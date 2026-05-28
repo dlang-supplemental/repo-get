@@ -2,7 +2,7 @@
 
 Multi-VCS repository fetching library for https://dlang.org[D].
 
-https://github.com/dlang-supplemental/repo-get[Repository] · https://github.com/dlang-supplemental/repo-get/releases[Releases]
+https://github.com/dlang-supplemental/repo-get[Repository] · https://github.com/dlang-supplemental/repo-get/releases[Releases] · https://dlang-supplemental.github.io/repo-get/[Website]
 
 == Overview
 

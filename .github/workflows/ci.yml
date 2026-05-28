@@ -7,7 +7,7 @@ on:
     branches: [ main, master ]
 
 jobs:
-  build:
+  dub:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,3 +19,26 @@ jobs:
         run: |
           dub build
           dub test
+
+  website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: website/pnpm-lock.yaml
+
+      - name: Build website
+        working-directory: website
+        env:
+          BASE_PATH: /repo-get/
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build

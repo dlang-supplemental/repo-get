@@ -1,3 +1,7 @@
+# Website
+website/node_modules/
+website/dist/
+
 # Dub
 .dub/
 docs/
