@@ -1,4 +1,4 @@
-module devcentr.repoget;
+module repoget.vcs;
 
 import std.process;
 import std.stdio;
@@ -13,7 +13,7 @@ import sdlang;
 // Equivalence Engine Core
 import equivalence.engine;
 import equivalence.path;
-import devcentr.platform;
+import repoget.platform;
 
 /**
  * Metadata for a VCS Profile defined in SDL
@@ -93,7 +93,7 @@ class GenericVCSProvider : VCSProvider {
         
         auto facts = getPlatformFacts();
         // Resolve intent: install-<vcs-name>
-        string intent = "install-" ~ profile.name.toLower();
+        string intent = "install-" ~ profile.name.toLower;
         
         // Match rules based on facts
         // Simple implementation: iterate rules and check matchers
@@ -163,6 +163,11 @@ class BootstrapDownloader {
     }
 }
 
+private string profileCachePath() {
+    string home = environment.get("HOME", environment.get("USERPROFILE", "."));
+    return buildPath(home, ".dlang-supplemental", "repo-get", "vcs-profiles.sdl");
+}
+
 /**
  * Manager to handle loading and updating VCS profiles
  */
@@ -172,7 +177,7 @@ class ProfileManager {
     private string cachePath;
 
     this() {
-        cachePath = buildPath(environment.get("USERPROFILE"), ".dev-centr", "repo-get", "vcs-profiles.sdl");
+        cachePath = profileCachePath();
         loadAll();
     }
 
@@ -189,7 +194,7 @@ class ProfileManager {
     }
 
     void updateFromRemote() {
-        string url = "https://raw.githubusercontent.com/dev-centr/repo-get/main/vcs-profiles.sdl";
+        string url = "https://raw.githubusercontent.com/dlang-supplemental/repo-get/main/vcs-profiles.sdl";
         try {
             string tmpPath = cachePath ~ ".tmp";
             BootstrapDownloader.download(url, tmpPath);

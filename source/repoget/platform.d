@@ -1,4 +1,4 @@
-module devcentr.platform;
+module repoget.platform;
 
 import std.process;
 import std.string;
