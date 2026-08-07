@@ -3,19 +3,11 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-ifndef::env-github[]
+[[readme-top]]
 image:https://img.shields.io/github/contributors/dlang-supplemental/repo-get.svg?style=for-the-badge[Contributors,link=https://github.com/dlang-supplemental/repo-get/graphs/contributors]
 image:https://img.shields.io/github/forks/dlang-supplemental/repo-get.svg?style=for-the-badge[Forks,link=https://github.com/dlang-supplemental/repo-get/network/members]
 image:https://img.shields.io/github/stars/dlang-supplemental/repo-get.svg?style=for-the-badge[Stars,link=https://github.com/dlang-supplemental/repo-get/stargazers]
 image:https://img.shields.io/github/issues/dlang-supplemental/repo-get.svg?style=for-the-badge[Issues,link=https://github.com/dlang-supplemental/repo-get/issues]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/dlang-supplemental/repo-get.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/dlang-supplemental/repo-get.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/dlang-supplemental/repo-get.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/dlang-supplemental/repo-get.svg?style=for-the-badge[Issues]
-endif::[]
 
 = repo-get
 
@@ -37,11 +29,15 @@ Default definitions live in `vcs-profiles.sdl`; an optional user cache under `~/
 * Bootstrap HTTP downloads resolved through https://github.com/AMDphreak/libequivalence[libequivalence] rules in `bootstrap.sdl`
 * Platform facts (`repoget.platform`) for matcher rules on Windows, Linux, and macOS
 
+link:#readme-top[back to top]
+
 == Installation
 
 * A https://dlang.org/download.html[D compiler] and https://github.com/dlang/dub[DUB]
 
 Add the package to your `dub.json` or `dub.sdl` (path, Git URL, or registry name once published), then import `repoget` and `repoget.platform`.
+
+link:#readme-top[back to top]
 
 == Usage
 
@@ -56,9 +52,13 @@ Primary entry points:
 Bundled profiles are compiled in via `stringImportPaths`.
 To refresh from GitHub, call `ProfileManager.updateFromRemote()` (writes under `~/.dlang-supplemental/repo-get/`).
 
+link:#readme-top[back to top]
+
 == License
 
 https://opensource.org/licenses/BSL-1.0[Boost Software License 1.0] (BSL-1.0)
+
+link:#readme-top[back to top]
 
 == Changelog
 
@@ -70,3 +70,5 @@ DLang Supplemental — dlang@devcentr.org
 
 * Project: https://github.com/dlang-supplemental/repo-get
 * Site: https://dlang-supplemental.github.io
+
+link:#readme-top[back to top]
