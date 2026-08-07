@@ -3,7 +3,27 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-[[readme-top]]
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/dlang-supplemental/repo-get/graphs/contributors"><img src="https://img.shields.io/github/contributors/dlang-supplemental/repo-get.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/dlang-supplemental/repo-get/network/members"><img src="https://img.shields.io/github/forks/dlang-supplemental/repo-get.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/dlang-supplemental/repo-get/stargazers"><img src="https://img.shields.io/github/stars/dlang-supplemental/repo-get.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/dlang-supplemental/repo-get/issues"><img src="https://img.shields.io/github/issues/dlang-supplemental/repo-get.svg?style=for-the-badge" alt="Issues"></a>
+<br />
+<h3 align="center">repo-get</h3>
+<p align="center">
+Multi-VCS repository fetch library for D — SDL profiles for git, svn, hg, fossil, and more.<br />
+<a href="https://dlang-supplemental.github.io/repo-get/"><strong>Explore the docs</strong></a><br /><br /><a href="https://github.com/dlang-supplemental/repo-get/releases">Releases</a>
+&middot;
+<a href="https://github.com/dlang-supplemental/repo-get/issues">Report Bug</a>
+</p>
+</div>
+++++
+endif::[]
+
+ifndef::env-github[]
 image:https://img.shields.io/github/contributors/dlang-supplemental/repo-get.svg?style=for-the-badge[Contributors,link=https://github.com/dlang-supplemental/repo-get/graphs/contributors]
 image:https://img.shields.io/github/forks/dlang-supplemental/repo-get.svg?style=for-the-badge[Forks,link=https://github.com/dlang-supplemental/repo-get/network/members]
 image:https://img.shields.io/github/stars/dlang-supplemental/repo-get.svg?style=for-the-badge[Stars,link=https://github.com/dlang-supplemental/repo-get/stargazers]
@@ -16,6 +36,7 @@ Multi-VCS repository fetch library for https://dlang.org[D] — SDL profiles for
 link:https://dlang-supplemental.github.io/repo-get/[Explore the docs] ·
 link:https://github.com/dlang-supplemental/repo-get/releases[Releases] ·
 link:https://github.com/dlang-supplemental/repo-get/issues[Report Bug]
+endif::[]
 
 == About The Project
 
@@ -29,7 +50,9 @@ Default definitions live in `vcs-profiles.sdl`; an optional user cache under `~/
 * Bootstrap HTTP downloads resolved through https://github.com/AMDphreak/libequivalence[libequivalence] rules in `bootstrap.sdl`
 * Platform facts (`repoget.platform`) for matcher rules on Windows, Linux, and macOS
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == Installation
 
@@ -37,7 +60,9 @@ link:#readme-top[back to top]
 
 Add the package to your `dub.json` or `dub.sdl` (path, Git URL, or registry name once published), then import `repoget` and `repoget.platform`.
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == Usage
 
@@ -52,13 +77,17 @@ Primary entry points:
 Bundled profiles are compiled in via `stringImportPaths`.
 To refresh from GitHub, call `ProfileManager.updateFromRemote()` (writes under `~/.dlang-supplemental/repo-get/`).
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == License
 
 https://opensource.org/licenses/BSL-1.0[Boost Software License 1.0] (BSL-1.0)
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == Changelog
 
@@ -71,4 +100,6 @@ DLang Supplemental — dlang@devcentr.org
 * Project: https://github.com/dlang-supplemental/repo-get
 * Site: https://dlang-supplemental.github.io
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
