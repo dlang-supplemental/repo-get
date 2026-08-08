@@ -1,0 +1,64 @@
+= Usage
+:navtitle: Usage
+
+== Primary entry points
+
+[cols="1,2",options="header"]
+|===
+| API | Purpose
+
+| `getProvider(string url)`
+| Resolve a `VCSProvider` from a repository URL and run clone, pull, or status.
+
+| `getManager()` / `ProfileManager`
+| Load bundled and cached VCS profiles; optionally refresh from GitHub.
+
+| `getForge(string hostOrUrl)` / `ForgeProfileManager`
+| Resolve forge metadata profiles from `forge-profiles.sdl` for issues/PR CLI templates.
+
+| `BootstrapDownloader.download`
+| Fetch a file using curl, wget, or PowerShell per `bootstrap.sdl` rules.
+|===
+
+== VCS example
+
+[source,d]
+----
+import repoget;
+
+void main() {
+    auto provider = getProvider("https://github.com/dlang/dub.git");
+    provider.clone("https://github.com/dlang/dub.git", "/tmp/dub");
+    writeln(provider.status("/tmp/dub"));
+}
+----
+
+== Forge metadata example
+
+Forge profiles describe how a host's CLI lists issues and pull requests.
+`repo-get` loads and resolves profiles; consumers (such as https://github.com/dev-centr/issues-browser[issues-browser]) substitute placeholders and run the sync engine.
+
+[source,d]
+----
+import repoget;
+
+void main() {
+    auto profile = getForge("https://github.com/dlang-supplemental/repo-get");
+    if (profile.name.length == 0) {
+        writeln("No forge profile matched");
+        return;
+    }
+    writeln("Forge: ", profile.name, " (cli: ", profile.cli, ")");
+    writeln("List issues: ", profile.listIssuesCmd);
+    writeln("GraphQL: ", profile.graphql);
+
+    auto mgr = getForgeManager();
+    writeln("CLI available: ", mgr.isCliAvailable(profile));
+}
+----
+
+== Constraints
+
+* `getProvider` falls back to the `git` profile when no URL matcher matches.
+* `getForge` falls back to the `github` profile when no host matcher matches; returns `ForgeProfile.init` only when no profiles are loaded.
+* Forge command templates use placeholders (`$OWNER`, `$NAME`, `$HOST`, `$SINCE`); this library does not substitute them — downstream tools do.

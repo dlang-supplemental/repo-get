@@ -1,0 +1,11 @@
+= Changelog
+:navtitle: Changelog
+
+Release summaries also appear on https://github.com/dlang-supplemental/repo-get/releases[GitHub Releases].
+
+== Entries
+
+* xref:changelog-details/2026-08-07-forge-profiles.adoc[2026-08-07] — Forge metadata SDL profiles (`getForge`)
+* xref:changelog-details/2026-05-28-website-and-module-layout.adoc[2026-05-28] — SolidJS docs site; `repoget.vcs` module rename
+* xref:changelog-details/2026-04-18-bootstrap-and-platform.adoc[2026-04-18] — libequivalence bootstrap, platform facts, remote profile refresh
+* xref:changelog-details/2026-04-05-sdl-profiles.adoc[2026-04-05] — Data-driven SDL VCS profiles and CI
