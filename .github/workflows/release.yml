@@ -24,6 +24,9 @@ jobs:
           - os: windows-latest
             asset: repo-get-windows-x86_64.lib
             pattern: '*.lib'
+          - os: windows-11-arm
+            asset: repo-get-windows-arm64.lib
+            pattern: '*.lib'
           - os: macos-latest
             asset: librepo-get-macos-arm64.a
             pattern: '*.a'
