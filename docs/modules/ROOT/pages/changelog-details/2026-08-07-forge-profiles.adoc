@@ -1,0 +1,31 @@
+= Forge metadata SDL profiles
+:navtitle: 2026-08-07 — Forge profiles
+:page-layout: default
+
+== Summary
+
+Added `forge-profiles.sdl` and the `repoget.forge` module so downstream tools can resolve CLI templates for listing issues and pull requests on GitHub and GitLab.
+
+== Changes
+
+* New `ForgeProfile` struct and `ForgeProfileManager` with `getForge()` / `getForgeManager()` entry points.
+* Bundled `forge-profiles.sdl` with `github` and `gitlab` definitions (matchers, CLI check commands, list-issues/list-prs argv, GraphQL flag, rate limits).
+* User cache overlay at `~/.dlang-supplemental/repo-get/forge-profiles.sdl`.
+* `dub.json` `copyFiles` now ships `vcs-profiles.sdl`, `forge-profiles.sdl`, and `bootstrap.sdl` to dependents.
+* README usage section documents the new API.
+
+== API surface
+
+[source,d]
+----
+import repoget;
+
+auto p = getForge("https://github.com/owner/repo");
+bool ok = getForgeManager().isCliAvailable(p);
+----
+
+== Notes for consumers
+
+* Placeholders `$OWNER`, `$NAME`, `$HOST`, and `$SINCE` in SDL templates are expanded by tools such as issues-browser, not by `repo-get`.
+* `getForge` falls back to the `github` profile when no matcher matches.
+* No `updateFromRemote()` for forge profiles yet (unlike VCS `ProfileManager`).

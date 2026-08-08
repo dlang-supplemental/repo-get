@@ -1,0 +1,80 @@
+= Forge profiles
+:navtitle: Forge profiles
+
+Forge profiles describe how to list issues and pull requests on a hosting forge using its official CLI (`gh`, `glab`, etc.).
+They are separate from xref:vcs-profiles.adoc[VCS profiles], which handle clone/pull/status.
+
+Bundled definitions live in `forge-profiles.sdl`.
+`ForgeProfileManager` loads them the same way as VCS profiles: compiled-in defaults plus an optional user cache overlay.
+
+== Purpose and consumers
+
+`repo-get` resolves profiles and exposes structured fields (`cli`, `listIssuesCmd`, `listPrsCmd`, rate limits, GraphQL flag).
+It does **not** run issue sync or substitute template placeholders — tools such as https://github.com/dev-centr/issues-browser[issues-browser] consume `ForgeProfile` data for that.
+
+== SDL schema
+
+[source]
+----
+forge "github" {
+    matcher r"github\.com"
+    cli "gh"
+    check "gh" "--version"
+    list-issues "api" "repos/$OWNER/$NAME/issues" "--paginate" "--state" "all"
+    list-prs "api" "repos/$OWNER/$NAME/pulls" "--paginate" "--state" "all"
+    graphql true
+    rate_limit {
+        min_interval_ms 1000
+        on_429_backoff_s 60
+    }
+}
+----
+
+[cols="1,2",options="header"]
+|===
+| Tag | Meaning
+
+| `matcher`
+| Regex patterns tested against a host name or full remote URL.
+
+| `cli`
+| Short name of the forge CLI (informational for consumers).
+
+| `check`
+| Command that must exit 0 for `ForgeProfileManager.isCliAvailable()` to succeed.
+
+| `list-issues` / `list-prs`
+| argv templates for listing metadata; placeholders `$OWNER`, `$NAME`, `$HOST`, `$SINCE` are expanded by consumers.
+
+| `graphql`
+| Whether the forge supports GraphQL-based queries in the consumer.
+
+| `rate_limit`
+| `min_interval_ms` between requests and `on_429_backoff_s` when HTTP 429 is returned.
+|===
+
+== API
+
+[source,d]
+----
+import repoget;
+
+auto profile = getForge("gitlab.com/mygroup/myproject");
+auto mgr = getForgeManager();
+bool ready = mgr.isCliAvailable(profile);
+----
+
+`getForge` returns the first profile whose matcher regex matches the input.
+If none match, it falls back to the `github` profile when present.
+
+== User cache
+
+A copy at `~/.dlang-supplemental/repo-get/forge-profiles.sdl` overlays bundled definitions (same path pattern as VCS profiles).
+There is no `updateFromRemote()` helper for forge profiles yet; copy or symlink the file manually, or refresh it when packaging ships updated SDL.
+
+== Adding a forge
+
+1. Add a `forge "name" { ... }` block to `forge-profiles.sdl`.
+2. Match host patterns with `matcher` regexes.
+3. Provide `check`, `list-issues`, and `list-prs` argv templates with the placeholders your consumer expects.
+4. List `forge-profiles.sdl` in `dub.json` `copyFiles` (already configured) so dependents receive the SDL at build time.

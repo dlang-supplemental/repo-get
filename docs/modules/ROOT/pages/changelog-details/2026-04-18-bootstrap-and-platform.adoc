@@ -1,0 +1,14 @@
+= Bootstrap and platform facts
+:navtitle: 2026-04-18 — Bootstrap
+:page-layout: default
+
+== Summary
+
+Integrated libequivalence for bootstrap downloads and platform detection; documented the library in README.
+
+== Changes
+
+* Added `bootstrap.sdl` for curl/wget/PowerShell download rules and install intents.
+* Added `repoget.platform` for OS/distro facts used by matchers.
+* `ProfileManager.updateFromRemote()` fetches updated `vcs-profiles.sdl` from GitHub.
+* `GenericVCSProvider.install()` resolves platform-specific install commands.
