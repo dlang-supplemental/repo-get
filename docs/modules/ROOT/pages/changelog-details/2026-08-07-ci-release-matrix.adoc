@@ -1,0 +1,13 @@
+= Expanded CI and release matrix
+:navtitle: 2026-08-07 — CI matrix
+:page-layout: default
+
+== Summary
+
+CI and tagged releases now build across Linux (x86_64 and arm64), Windows x86_64, and macOS (arm64 and x86_64).
+
+== Changes
+
+* `.github/workflows/ci.yml` — matrix runners for `ubuntu-24.04-arm`, `macos-13`, and existing `ubuntu-latest`, `windows-latest`, `macos-latest`.
+* `.github/workflows/release.yml` — per-platform static library artifacts with consistent naming (`librepo-get-*` / `repo-get-windows-*`).
+* `README.adoc` — documents thin forge scope (metadata SDL only; no sync engine in this library).

@@ -1,0 +1,44 @@
+= Configuration
+:navtitle: Configuration
+
+== Bundled SDL files
+
+DUB compiles SDL into the library via `stringImportPaths` and copies profile files to dependent projects:
+
+[source,json]
+----
+"stringImportPaths": ["."],
+"copyFiles": ["vcs-profiles.sdl", "forge-profiles.sdl", "bootstrap.sdl"]
+----
+
+== User cache directory
+
+Both profile managers read optional overlays from:
+
+[source]
+----
+~/.dlang-supplemental/repo-get/
+├── vcs-profiles.sdl
+└── forge-profiles.sdl
+----
+
+On Windows, `%USERPROFILE%\.dlang-supplemental\repo-get\` is used instead.
+
+Cache files are parsed after bundled defaults; later definitions with the same profile name replace earlier ones.
+
+== Remote refresh (VCS only)
+
+[source,d]
+----
+import repoget;
+
+getManager().updateFromRemote();
+----
+
+This downloads `vcs-profiles.sdl` from `https://raw.githubusercontent.com/dlang-supplemental/repo-get/main/vcs-profiles.sdl`.
+Forge profiles do not yet have an equivalent remote updater.
+
+== Bootstrap downloads
+
+`bootstrap.sdl` defines equivalence rules for HTTP downloads and optional VCS install commands.
+`BootstrapDownloader` and `GenericVCSProvider.install()` use these rules with platform facts from `repoget.platform`.

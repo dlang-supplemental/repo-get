@@ -1,0 +1,7 @@
+* xref:index.adoc[Introduction]
+* xref:usage.adoc[Usage]
+* xref:vcs-profiles.adoc[VCS profiles]
+* xref:forge-profiles.adoc[Forge profiles]
+* xref:configuration.adoc[Configuration]
+* xref:ci-and-releases.adoc[CI and releases]
+* xref:changelog.adoc[Changelog]

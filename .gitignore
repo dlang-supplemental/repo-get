@@ -4,7 +4,6 @@ website/dist/
 
 # Dub
 .dub/
-docs/
 docs.json
 __standard_library_docs/
 *.lib

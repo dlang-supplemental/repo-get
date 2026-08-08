@@ -1,0 +1,17 @@
+= Windows on ARM CI and release artifact
+:navtitle: 2026-08-08 — Windows ARM64
+:page-layout: default
+
+== Summary
+
+Adds `windows-11-arm` to the CI and release matrices so Windows ARM64 is built and published alongside x86_64.
+
+== Changes
+
+* `.github/workflows/ci.yml` — `windows-11-arm` / `arm64` matrix row (`dub build`, `dub test`).
+* `.github/workflows/release.yml` — `repo-get-windows-arm64.lib` artifact from `windows-11-arm` runners.
+* xref:ci-and-releases.adoc[CI and releases] — documents the full runner and artifact matrix.
+
+== Constraints
+
+* Use `repo-get-windows-arm64.lib` on Windows ARM64; the x86_64 `.lib` is built on `windows-latest` only.

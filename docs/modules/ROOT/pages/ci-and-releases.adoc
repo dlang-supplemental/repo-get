@@ -1,0 +1,78 @@
+= CI and releases
+:navtitle: CI and releases
+
+`repo-get` builds and tests on every push and pull request to `main`.
+Tagged releases (`v*`) publish prebuilt static libraries for common platforms.
+
+== Continuous integration
+
+Workflow: `.github/workflows/ci.yml`
+
+[cols="2,1,1",options="header"]
+|===
+| Runner | Architecture | Job
+
+| `ubuntu-latest`
+| x86_64
+| `dub build -b release` and `dub test`
+
+| `ubuntu-24.04-arm`
+| arm64
+| same
+
+| `windows-latest`
+| x86_64
+| same
+
+| `windows-11-arm`
+| arm64
+| same — Windows on ARM coverage added in PR #3
+
+| `macos-latest`
+| arm64
+| same
+
+| `macos-13`
+| x86_64
+| same
+|===
+
+A separate `website` job builds the SolidJS docs site (`website/`) on `ubuntu-latest`.
+
+== Release artifacts
+
+Workflow: `.github/workflows/release.yml` (triggered by version tags)
+
+Each matrix row builds with LDC, stages one library file, and uploads it as a release asset:
+
+[cols="2,2",options="header"]
+|===
+| Runner | Release asset
+
+| `ubuntu-latest`
+| `librepo-get-linux-x86_64.a`
+
+| `ubuntu-24.04-arm`
+| `librepo-get-linux-arm64.a`
+
+| `windows-latest`
+| `repo-get-windows-x86_64.lib`
+
+| `windows-11-arm`
+| `repo-get-windows-arm64.lib`
+
+| `macos-latest`
+| `librepo-get-macos-arm64.a`
+
+| `macos-13`
+| `librepo-get-macos-x86_64.a`
+|===
+
+Release notes are generated automatically; download assets from https://github.com/dlang-supplemental/repo-get/releases[GitHub Releases].
+
+== When to use prebuilt libraries
+
+Prefer adding `repo-get` as a DUB dependency and letting DUB compile the library for your target.
+Use release `.a`/`.lib` files only when you embed the library outside DUB or need a known binary for a specific runner triple.
+
+On Windows ARM64, match the `repo-get-windows-arm64.lib` artifact from `windows-11-arm` builds — do not substitute the x86_64 Windows library.

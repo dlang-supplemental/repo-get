@@ -11,6 +11,8 @@ ifdef::env-github[]
 <a href="https://github.com/dlang-supplemental/repo-get/network/members"><img src="https://img.shields.io/github/forks/dlang-supplemental/repo-get.svg?style=for-the-badge" alt="Forks"></a>
 <a href="https://github.com/dlang-supplemental/repo-get/stargazers"><img src="https://img.shields.io/github/stars/dlang-supplemental/repo-get.svg?style=for-the-badge" alt="Stars"></a>
 <a href="https://github.com/dlang-supplemental/repo-get/issues"><img src="https://img.shields.io/github/issues/dlang-supplemental/repo-get.svg?style=for-the-badge" alt="Issues"></a>
+<a href="https://github.com/dlang-supplemental/repo-get/actions/workflows/ci.yml"><img src="https://github.com/dlang-supplemental/repo-get/actions/workflows/ci.yml/badge.svg?style=for-the-badge" alt="CI"></a>
+<a href="https://dlang-supplemental.github.io/repo-get/"><img src="https://img.shields.io/badge/docs-DLang%20Supplemental-22c55e?style=for-the-badge" alt="Docs"></a>
 <br />
 <h3 align="center">repo-get</h3>
 <p align="center">
@@ -28,6 +30,8 @@ image:https://img.shields.io/github/contributors/dlang-supplemental/repo-get.svg
 image:https://img.shields.io/github/forks/dlang-supplemental/repo-get.svg?style=for-the-badge[Forks,link=https://github.com/dlang-supplemental/repo-get/network/members]
 image:https://img.shields.io/github/stars/dlang-supplemental/repo-get.svg?style=for-the-badge[Stars,link=https://github.com/dlang-supplemental/repo-get/stargazers]
 image:https://img.shields.io/github/issues/dlang-supplemental/repo-get.svg?style=for-the-badge[Issues,link=https://github.com/dlang-supplemental/repo-get/issues]
+image:https://github.com/dlang-supplemental/repo-get/actions/workflows/ci.yml/badge.svg?style=for-the-badge[CI,link=https://github.com/dlang-supplemental/repo-get/actions/workflows/ci.yml]
+image:https://img.shields.io/badge/docs-DLang%20Supplemental-22c55e?style=for-the-badge[Docs,link=https://dlang-supplemental.github.io/repo-get/]
 
 = repo-get
 
@@ -67,7 +71,7 @@ Do **not** put forge API clients, SQLite archives, or daemon IPC here — that o
 
 Add the package to your `dub.json` or `dub.sdl` (path, Git URL, or https://code.dlang.org[DUB registry] name), then import `repoget` and `repoget.platform`.
 
-Tagged releases publish static libraries for Linux/Windows/macOS (x86_64 and arm64 where runners exist). Prefer `dub` dependency resolution over downloading `.a`/`.lib` by hand unless you are embedding outside DUB.
+Tagged releases publish static libraries for Linux, Windows (x86_64 and ARM64), and macOS (x86_64 and arm64). See link:https://github.com/dlang-supplemental/repo-get/blob/main/docs/modules/ROOT/pages/ci-and-releases.adoc[CI and release matrix] for runner and artifact names. Prefer `dub` dependency resolution over downloading `.a`/`.lib` by hand unless you are embedding outside DUB.
 
 ++++
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -101,7 +105,7 @@ https://opensource.org/licenses/BSL-1.0[Boost Software License 1.0] (BSL-1.0)
 
 == Changelog
 
-Summary notes ship with https://github.com/dlang-supplemental/repo-get/releases[GitHub Releases].
+Detailed entries live in `docs/modules/ROOT/pages/changelog.adoc` (Antora component). Release summaries also ship with https://github.com/dlang-supplemental/repo-get/releases[GitHub Releases].
 
 == Contact
 
