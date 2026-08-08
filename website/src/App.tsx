@@ -9,6 +9,7 @@ applyTheme(readStoredTheme())
 
 const features = [
   "SDL-defined VCS profiles (git, svn, hg, jj, darcs, fossil, bzr, cvs, Perforce-style URLs)",
+  "SDL-defined forge metadata profiles (GitHub, GitLab) for issues/PR CLI templates",
   "VCSProvider interface: clone, pull, status, availability checks",
   "Bootstrap downloads via libequivalence rules in bootstrap.sdl",
   "Platform facts for matcher rules on Windows, Linux, and macOS"
@@ -17,6 +18,7 @@ const features = [
 const entryPoints = [
   { name: "getProvider(url)", desc: "Resolve a VCSProvider from a URL" },
   { name: "getManager() / ProfileManager", desc: "Load profiles; optional remote refresh" },
+  { name: "getForge(hostOrUrl) / ForgeProfileManager", desc: "Resolve forge metadata profiles for issues/PR tooling" },
   { name: "BootstrapDownloader.download", desc: "Fetch files using curl, wget, or PowerShell" }
 ]
 

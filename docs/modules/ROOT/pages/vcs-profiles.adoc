@@ -1,0 +1,45 @@
+= VCS profiles
+:navtitle: VCS profiles
+
+Bundled definitions live in `vcs-profiles.sdl` at the repository root.
+`ProfileManager` compiles them in via D's `import("vcs-profiles.sdl")` and optionally overlays a user cache file.
+
+== SDL schema
+
+Each `vcs` block names a backend and declares regex matchers plus command templates.
+
+[source]
+----
+vcs "git" {
+    matcher r"\.git$" r"^git\+"
+    check "git" "--version"
+    clone "git" "clone" "--depth" "1" "$URL" "$PATH"
+    pull "git" "-C" "$PATH" "pull"
+    status "git" "-C" "$PATH" "status" "--short"
+}
+----
+
+[cols="1,2",options="header"]
+|===
+| Tag | Meaning
+
+| `matcher`
+| One or more regex patterns tested against the repository URL.
+
+| `check`
+| Command that must exit 0 for `isAvailable()` to succeed.
+
+| `clone` / `pull` / `status`
+| Command argv with `$URL` and `$PATH` placeholders.
+
+| `open` / `install`
+| Optional post-clone or platform install commands (see `bootstrap.sdl` for install rules).
+|===
+
+== Bundled backends
+
+git, svn, hg, jj (Jujutsu), darcs, fossil, bzr, cvs, and Perforce-style URL patterns are included in the default file.
+
+== Remote refresh
+
+`ProfileManager.updateFromRemote()` downloads `vcs-profiles.sdl` from the `main` branch on GitHub into the user cache (see xref:configuration.adoc[Configuration]).

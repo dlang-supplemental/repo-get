@@ -1,0 +1,38 @@
+= repo-get
+:navtitle: Introduction
+:page-layout: default
+
+Multi-VCS repository fetch library for https://dlang.org[D] — SDL profiles for git, svn, hg, fossil, and more.
+
+== Features
+
+* SDL-defined VCS profiles (git, Subversion, Mercurial, Jujutsu, Darcs, Fossil, Bazaar, CVS, Perforce-style URLs)
+* `VCSProvider` interface: clone, pull, status, availability checks
+* SDL-defined forge metadata profiles for issues and pull requests (GitHub, GitLab)
+* Bootstrap HTTP downloads resolved through https://github.com/AMDphreak/libequivalence[libequivalence] rules in `bootstrap.sdl`
+* Platform facts (`repoget.platform`) for matcher rules on Windows, Linux, and macOS
+
+== Installation
+
+* A https://dlang.org/download.html[D compiler] and https://github.com/dlang/dub[DUB]
+
+Add the package to your `dub.json` or `dub.sdl`, then import `repoget` and `repoget.platform`.
+
+[source,json]
+----
+{
+  "dependencies": {
+    "repo-get": {
+      "repository": "git+https://github.com/dlang-supplemental/repo-get.git",
+      "version": "main"
+    }
+  }
+}
+----
+
+== Next steps
+
+* xref:usage.adoc[Usage] — primary entry points and examples
+* xref:vcs-profiles.adoc[VCS profiles] — clone/pull/status SDL schema
+* xref:forge-profiles.adoc[Forge profiles] — issues/PR CLI templates for forge hosts
+* xref:configuration.adoc[Configuration] — cache paths and remote refresh

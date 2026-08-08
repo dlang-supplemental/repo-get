@@ -1,0 +1,13 @@
+= Data-driven SDL VCS profiles
+:navtitle: 2026-04-05 — SDL profiles
+:page-layout: default
+
+== Summary
+
+Initial library refactor from hard-coded VCS logic to SDL-defined profiles with CI.
+
+== Changes
+
+* `vcs-profiles.sdl` defines git, svn, hg, and additional backends.
+* `VCSProvider` interface with `GenericVCSProvider` command execution.
+* GitHub Actions CI workflow (`dub build`, `dub test`) and release workflow.

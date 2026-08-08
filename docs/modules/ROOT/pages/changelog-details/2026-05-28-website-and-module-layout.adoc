@@ -1,0 +1,13 @@
+= SolidJS site and module layout
+:navtitle: 2026-05-28 — Website
+:page-layout: default
+
+== Summary
+
+Renamed the core VCS module to `repoget.vcs` and added a SolidJS landing page deployed to GitHub Pages.
+
+== Changes
+
+* `repoget.d` renamed to `vcs.d` matching module `repoget.vcs`.
+* Moved to `dlang-supplemental` org; public modules under `repoget.*`.
+* Added `website/` Vite + SolidJS project and Pages workflow (`BASE_PATH=/repo-get/`).
