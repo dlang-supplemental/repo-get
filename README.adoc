@@ -47,8 +47,15 @@ Default definitions live in `vcs-profiles.sdl`; an optional user cache under `~/
 
 * SDL-defined VCS profiles (git, Subversion, Mercurial, Jujutsu, Darcs, Fossil, Bazaar, CVS, Perforce-style URLs in the bundled set)
 * `VCSProvider` interface: clone, pull, status, availability checks
+* Thin forge metadata profiles (`forge-profiles.sdl` / `getForge`) — host URL patterns and label only; sync engines stay in consumers (for example issues-browser)
 * Bootstrap HTTP downloads resolved through https://github.com/AMDphreak/libequivalence[libequivalence] rules in `bootstrap.sdl`
 * Platform facts (`repoget.platform`) for matcher rules on Windows, Linux, and macOS
+
+=== Scope (keep it thin)
+
+`repo-get` is a **library** for VCS fetch + declarative profiles. It is fine to host forge *schema* next to VCS profiles so CI and apps share one package.
+
+Do **not** put forge API clients, SQLite archives, or daemon IPC here — that overloads the library and slows CI. Prefer a consumer project for sync/browse.
 
 ++++
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -58,7 +65,9 @@ Default definitions live in `vcs-profiles.sdl`; an optional user cache under `~/
 
 * A https://dlang.org/download.html[D compiler] and https://github.com/dlang/dub[DUB]
 
-Add the package to your `dub.json` or `dub.sdl` (path, Git URL, or registry name once published), then import `repoget` and `repoget.platform`.
+Add the package to your `dub.json` or `dub.sdl` (path, Git URL, or https://code.dlang.org[DUB registry] name), then import `repoget` and `repoget.platform`.
+
+Tagged releases publish static libraries for Linux/Windows/macOS (x86_64 and arm64 where runners exist). Prefer `dub` dependency resolution over downloading `.a`/`.lib` by hand unless you are embedding outside DUB.
 
 ++++
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -70,6 +79,7 @@ Primary entry points:
 
 * `getProvider(string url)` — resolve a `VCSProvider` from a URL
 * `getManager()` / `ProfileManager` — load profiles, optional remote refresh
+* `getForge(string hostOrUrl)` / `ForgeProfileManager` — resolve forge metadata profiles (`forge-profiles.sdl`) for issues/PRs/discussions CLI templates (consumed by tools such as https://github.com/dev-centr/issues-browser[issues-browser]; this library does not run the sync engine)
 * `BootstrapDownloader.download` — fetch a file using curl, wget, or PowerShell per bootstrap rules
 
 === Configuration
