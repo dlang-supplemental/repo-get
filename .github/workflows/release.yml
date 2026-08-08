@@ -30,9 +30,6 @@ jobs:
           - os: macos-latest
             asset: librepo-get-macos-arm64.a
             pattern: '*.a'
-          - os: macos-13
-            asset: librepo-get-macos-x86_64.a
-            pattern: '*.a'
     steps:
       - uses: actions/checkout@v4
       - name: Install D compiler
