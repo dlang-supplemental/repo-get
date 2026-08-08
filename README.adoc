@@ -70,6 +70,7 @@ Primary entry points:
 
 * `getProvider(string url)` — resolve a `VCSProvider` from a URL
 * `getManager()` / `ProfileManager` — load profiles, optional remote refresh
+* `getForge(string hostOrUrl)` / `ForgeProfileManager` — resolve forge metadata profiles (`forge-profiles.sdl`) for issues/PRs/discussions CLI templates (consumed by tools such as https://github.com/dev-centr/issues-browser[issues-browser]; this library does not run the sync engine)
 * `BootstrapDownloader.download` — fetch a file using curl, wget, or PowerShell per bootstrap rules
 
 === Configuration

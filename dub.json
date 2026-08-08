@@ -11,5 +11,6 @@
 			"version": "ecbc77baa6863517b15b2fcd467aa24b2429386a"
 		}
 	},
-	"stringImportPaths": ["."]
+	"stringImportPaths": ["."],
+	"copyFiles": ["vcs-profiles.sdl", "forge-profiles.sdl", "bootstrap.sdl"]
 }
