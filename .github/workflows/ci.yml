@@ -8,7 +8,22 @@ on:
 
 jobs:
   dub:
-    runs-on: ubuntu-latest
+    name: Build ${{ matrix.os }} ${{ matrix.arch }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            arch: x86_64
+          - os: ubuntu-24.04-arm
+            arch: arm64
+          - os: windows-latest
+            arch: x86_64
+          - os: macos-latest
+            arch: arm64
+          - os: macos-13
+            arch: x86_64
     steps:
       - uses: actions/checkout@v4
       - name: Install D compiler
@@ -17,7 +32,7 @@ jobs:
           compiler: ldc-latest
       - name: Build and Test
         run: |
-          dub build
+          dub build -b release
           dub test
 
   website:
