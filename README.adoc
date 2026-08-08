@@ -11,6 +11,8 @@ ifdef::env-github[]
 <a href="https://github.com/dlang-supplemental/repo-get/network/members"><img src="https://img.shields.io/github/forks/dlang-supplemental/repo-get.svg?style=for-the-badge" alt="Forks"></a>
 <a href="https://github.com/dlang-supplemental/repo-get/stargazers"><img src="https://img.shields.io/github/stars/dlang-supplemental/repo-get.svg?style=for-the-badge" alt="Stars"></a>
 <a href="https://github.com/dlang-supplemental/repo-get/issues"><img src="https://img.shields.io/github/issues/dlang-supplemental/repo-get.svg?style=for-the-badge" alt="Issues"></a>
+<a href="https://github.com/dlang-supplemental/repo-get/actions/workflows/ci.yml"><img src="https://github.com/dlang-supplemental/repo-get/actions/workflows/ci.yml/badge.svg?style=for-the-badge" alt="CI"></a>
+<a href="https://dlang-supplemental.github.io/repo-get/"><img src="https://img.shields.io/badge/docs-DLang%20Supplemental-22c55e?style=for-the-badge" alt="Docs"></a>
 <br />
 <h3 align="center">repo-get</h3>
 <p align="center">
@@ -28,6 +30,8 @@ image:https://img.shields.io/github/contributors/dlang-supplemental/repo-get.svg
 image:https://img.shields.io/github/forks/dlang-supplemental/repo-get.svg?style=for-the-badge[Forks,link=https://github.com/dlang-supplemental/repo-get/network/members]
 image:https://img.shields.io/github/stars/dlang-supplemental/repo-get.svg?style=for-the-badge[Stars,link=https://github.com/dlang-supplemental/repo-get/stargazers]
 image:https://img.shields.io/github/issues/dlang-supplemental/repo-get.svg?style=for-the-badge[Issues,link=https://github.com/dlang-supplemental/repo-get/issues]
+image:https://github.com/dlang-supplemental/repo-get/actions/workflows/ci.yml/badge.svg?style=for-the-badge[CI,link=https://github.com/dlang-supplemental/repo-get/actions/workflows/ci.yml]
+image:https://img.shields.io/badge/docs-DLang%20Supplemental-22c55e?style=for-the-badge[Docs,link=https://dlang-supplemental.github.io/repo-get/]
 
 = repo-get
 
@@ -45,6 +49,7 @@ Default definitions live in `vcs-profiles.sdl`; an optional user cache under `~/
 
 === Features
 
+* SDL-defined forge metadata profiles (`forge-profiles.sdl`) for issues/PR CLI templates on GitHub and GitLab
 * SDL-defined VCS profiles (git, Subversion, Mercurial, Jujutsu, Darcs, Fossil, Bazaar, CVS, Perforce-style URLs in the bundled set)
 * `VCSProvider` interface: clone, pull, status, availability checks
 * Bootstrap HTTP downloads resolved through https://github.com/AMDphreak/libequivalence[libequivalence] rules in `bootstrap.sdl`
@@ -76,7 +81,10 @@ Primary entry points:
 === Configuration
 
 Bundled profiles are compiled in via `stringImportPaths`.
-To refresh from GitHub, call `ProfileManager.updateFromRemote()` (writes under `~/.dlang-supplemental/repo-get/`).
+DUB `copyFiles` ships `vcs-profiles.sdl`, `forge-profiles.sdl`, and `bootstrap.sdl` to dependents.
+
+To refresh VCS profiles from GitHub, call `ProfileManager.updateFromRemote()` (writes under `~/.dlang-supplemental/repo-get/vcs-profiles.sdl`).
+Forge profiles can be overlaid at `~/.dlang-supplemental/repo-get/forge-profiles.sdl`; see link:docs/modules/ROOT/pages/forge-profiles.adoc[forge-profiles.adoc] for the SDL schema and placeholders (`$OWNER`, `$NAME`, `$HOST`, `$SINCE`).
 
 ++++
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -92,7 +100,8 @@ https://opensource.org/licenses/BSL-1.0[Boost Software License 1.0] (BSL-1.0)
 
 == Changelog
 
-Summary notes ship with https://github.com/dlang-supplemental/repo-get/releases[GitHub Releases].
+See `docs/modules/ROOT/pages/changelog.adoc` for dated entries.
+Release summaries also ship with https://github.com/dlang-supplemental/repo-get/releases[GitHub Releases].
 
 == Contact
 
