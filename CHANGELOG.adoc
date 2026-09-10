@@ -1,0 +1,9 @@
+= Changelog
+
+Functional changes for `dlang-supplemental/repo-get`.
+
+== 2026-09-10 — Crawlability + no-JS fallback
+
+* Website ships `website/public/robots.txt` and `website/public/sitemap.xml` for https://dlang-supplemental.github.io/repo-get/.
+* `website/index.html` keeps the `#root` mount and adds an h1 plus short purpose paragraph visible without JavaScript.
+* See link:changelog-details/2026-09-10 - crawlability-no-js.adoc[Detailed changelog].

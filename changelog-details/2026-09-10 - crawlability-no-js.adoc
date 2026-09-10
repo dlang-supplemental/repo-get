@@ -1,0 +1,12 @@
+= 2026-09-10 — Crawlability + no-JS fallback
+
+::description: Add robots.txt + sitemap.xml and a no-JS HTML fallback for the repo-get marketing site.
+
+== What changed
+
+* Added `website/public/robots.txt` and `website/public/sitemap.xml` (Vite copies as-is).
+* `website/index.html` keeps `#root` and includes title, meta description, h1, and a short purpose paragraph for crawlers and no-JS readers.
+
+== See also
+
+* Live site: https://dlang-supplemental.github.io/repo-get/
